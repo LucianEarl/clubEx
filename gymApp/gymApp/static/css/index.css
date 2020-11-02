@@ -1,0 +1,71 @@
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+   width: 100%;
+}
+.bodyContainer {
+   min-height:100%;
+   width: 100%;
+   position:relative;
+}
+.clubHeader, .footer {
+   width: 98%;
+   height: 130px;
+   background-color: rgb(19, 19, 51);
+   display: block;
+   margin: 10px auto;
+}
+.titleHeader, .copyright {
+   color: aliceblue;
+}
+.titleHeader h2{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: large;
+   font-weight: lighter;
+   text-align: right;
+   padding-top: 30px;
+   padding-right: 10%;
+   margin: 0 !important;
+}
+.titleHeader h4{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: small;
+   font-weight: 100;
+   text-align-last: right;
+   padding-right: 10%;
+}
+nav {
+   width: 98% !important;
+   margin: 0 auto;
+   background-color: #fff;
+   
+}
+nav .brand-logo {
+   color: rgb(19, 19, 51) !important;
+   padding-left: 30px;
+}
+nav ul a {
+   color: rgb(45, 45, 117) !important;
+}
+.body{
+   width: 98%;
+   height: auto;
+   margin: 0 auto;
+   padding-bottom: 120px;
+}
+
+/* add your css for anything you may add in the body!*/
+
+
+.copyright{
+   text-align: center;
+   padding-top: 50px;
+   font-size: medium;
+}
+.footer{
+   position:absolute;
+   bottom:0;
+   left: 1%;
+}
