@@ -47,7 +47,11 @@ nav .brand-logo {
    padding-left: 30px;
 }
 nav ul a {
-   color: rgb(45, 45, 117) !important;
+   color: rgb(19, 19, 51) !important;
+}
+nav ul li:hover{
+   background-color: rgb(78, 180, 180);
+   transition: background-color 1.5s;
 }
 .body{
    width: 98%;
@@ -68,4 +72,13 @@ nav ul a {
    position:absolute;
    bottom:0;
    left: 1%;
+}
+.btn, .btn-large, .btn-small{
+   color: #131333 !important;
+   background-color: #fff;
+}
+.waves-effect {
+   position: absolute;
+   right: 20px;
+   bottom: 30px;
 }
