@@ -68,7 +68,7 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': 'project.db',
+        'NAME': 'gym.db',
         'PASSWORD': '',
         'PORT': '',
         'USER': ''
