@@ -6,3 +6,7 @@ from django.shortcuts import redirect
 #home view
 def home(request):
     return render(request, "home.html")
+
+#subscriptions
+def subscriptions(request):
+    return render(request, "subscription.html")

@@ -30,19 +30,17 @@ ALLOWED_HOSTS = []
 TIME_ZONE = 'NewZealand/Auckland'
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
-   
+    'clubEx.apps.ClubexConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'clubEx',
     'gymApp',
 ]
 
@@ -119,6 +117,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+STRIPE_TEST_PUBLIC_KEY ='your_pk_test'
+STRIPE_TEST_SECRET_KEY = 'your_secret_key'
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
 
 
 # Static files (CSS, JavaScript, Images)
