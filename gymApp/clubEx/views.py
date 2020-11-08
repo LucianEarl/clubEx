@@ -10,3 +10,7 @@ def home(request):
 #subscriptions
 def subscriptions(request):
     return render(request, "subscription.html")
+
+#login view
+def login(request):
+    return render(request, "login.html")

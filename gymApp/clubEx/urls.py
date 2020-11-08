@@ -1,10 +1,11 @@
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.urls import include, path
 from gymApp import settings
-from .views import home, subscriptions
+from .views import home, subscriptions, login
 
 urlpatterns = [
     path('', home, name='home'),
+    path('login/', login, name="login"),
     path('subscribe/', subscriptions, name="subscription"),
 
 ]
