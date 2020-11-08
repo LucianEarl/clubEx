@@ -25,3 +25,5 @@ Keeps a running total of how many times a video has been viewed, for feedback to
 Videos can be rated by the customer, e.g. like / dislike, or ranking from 1 -5 stars (students to decide) 
 
 A stats page that shows the name of the video that was viewed, and how long it was viewed for i.e. a lifetime tally of the workout time (students to think about how best to show this) 
+
+SuperUser - test@test.com, pass: test
