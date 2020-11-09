@@ -19,6 +19,7 @@ TIME_ZONE = 'NewZealand/Auckland'
 
 INSTALLED_APPS = [
     'clubEx.apps.ClubexConfig',
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gymApp',
+    'djstripe',
+    'stripe',
     
 ]
 
@@ -108,6 +111,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+STRIPE_TEST_PUBLIC_KEY ='pk_test_51HjKsMEh7fsFCPRmVzdBFpqEvXOih6ICBXVTQ9fYriIDkRIr8gmNhAU8zrKp6QCfg7nz8qE3Ee7gy5Ni6cC38U6Q00RoL9O0Zm'
+STRIPE_TEST_SECRET_KEY = 'sk_test_51HjKsMEh7fsFCPRmUxK1q8ME7Kv4GOL4W9vjutKsRzd47nzzVszS04MH7Wa0DyF0ZSHVlkheskdAm44ZndAdXN7P00VIE9Y364'
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -117,10 +124,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [
-    '/gymApp/static/',
-    '/static',
-    '/clubEx/static/'
+STATICFILES_DIRS = [   
+    '/gymApp/gymApp/static/',
+    '/static/', 
+    '/gymApp/static/' 
 ]
 
 LOGIN_REDIRECT_URL ='/'
