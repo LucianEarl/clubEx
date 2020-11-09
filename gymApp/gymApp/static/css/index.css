@@ -46,7 +46,9 @@ body {
 
 /* add your css for anything you may add in the body!*/
 
-
+button{
+  margin: 10px auto;
+}
 .copyright{
    text-align: center;
    padding-top: 50px;
@@ -76,4 +78,3 @@ body {
    padding-left: 20px;
    padding-right: 5px;
 }
-
