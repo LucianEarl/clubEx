@@ -46,7 +46,7 @@ body {
 
 /* add your css for anything you may add in the body!*/
 
-button{
+button[type="submit"]{
   margin: 10px auto;
 }
 .copyright{

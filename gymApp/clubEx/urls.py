@@ -9,7 +9,6 @@ from account.views import(
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('subscribe/', subscriptions, name="subscription"),
     path('signup/', signup_view, name='signup'),
