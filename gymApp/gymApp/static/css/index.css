@@ -68,7 +68,9 @@ body {
 
 /* add your css for anything you may add in the body!*/
 
-
+button[type="submit"]{
+  margin: 10px auto;
+}
 .copyright{
    text-align: center;
    padding-top: 50px;
