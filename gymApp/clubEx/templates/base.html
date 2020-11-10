@@ -4,18 +4,22 @@
     <head>
         <title>{% block title %}Club Ex{% endblock title %}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet"  href="{%  static "css/index.css" %}">
-        <script scr="{% static "js/index.js" %}"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+        <link rel="stylesheet"  href="{% static 'css/index.css' %}">       
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        <script src="{% static 'js/index.js' %}"></script>
     </head>
-    <body>
-        <div class="bodyContainer">
+
+    <body>          
+        <div class="bodyContainer"> 
             <div class="clubHeader">
                 <div class="titleHeader">
                     <h2>"Success usually comes to those who are too busy to be looking for it."</h2>
                     <h4><cite>-- Henry David Thoreau.</cite></h4>
                 </div>
+                {% if user.is_authenticated %}
+                <a class="end-item" href="#">Hi {{user.get_full_name }}</a>
+                {% endif %}
             </div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href={% url "home" %}><i class="fas fa-dumbbell"></i>Club EX</a>
