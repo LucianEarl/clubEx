@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <div>
+      <h1>{{user.first_name|capfirst}} {{user.last_name|capfirst}}</h1>
+      <br><br>
+      <p><b>Email:</b> {{ user.get_username}} </p>
+      <p><b>Phone Number:</b> {{ user.phone_number}} </p>
+      <p><b>Address:</b> {{ user.physical_address}} </p>
+
+    </div>
+  {% else %}
+    <p>You do not have permission to see this page</p>
+  {% endif %}
+{% endblock %}
