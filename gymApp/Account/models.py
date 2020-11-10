@@ -59,7 +59,7 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=30, unique=False)
     physical_address = models.CharField(max_length=300, unique=False)
     phone_number = models.CharField(max_length=10)
-    # subscription_plan = models.CharField(max_length=10)
+    subscription_plan = models.CharField(max_length=10, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'physical_address',

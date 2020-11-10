@@ -19,7 +19,6 @@ def home(request):
 #subscriptions
 @login_required
 def subscriptions(request):
-    return render(request, "subscription.html")
     products = Product.objects.all()
     return render(request, "subscription.html",{"products": products})
 
