@@ -40,6 +40,7 @@ function stripeElements() {
       document.getElementById("submit").disabled = false;
       displayError(event);
     });
+
   }
 };
 // How to display errors
@@ -73,7 +74,15 @@ function planSelect(name, price, priceId) {
   //activate subscribe button 
   
   alert("X-Devs - testing\nGenuine card information cannot be used in test mode. Instead, use any of the following test card numbers, a valid expiration date in the future, and any random CVC number,any postal code with min 5 numbers to create a successful payment.\n 4242 4242 4242 4242\n5555 5555 5555 4444")
+  updateUser();
 };
+
+
+function updateUser(){
+  var plan = document.getElementById('plan').innerHTML;
+  let sub = document.getElementById('subscription');
+  sub.innerHTML = plan;
+}
 
 
 
