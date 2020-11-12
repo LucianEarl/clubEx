@@ -22,7 +22,7 @@ def subscriptions(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             f = form.cleaned_data['addSub']
-            name = request.user 
+            name = request.user
             name.subscription_plan = f
             name.save()
             return HttpResponseRedirect('/complete/')
@@ -34,3 +34,6 @@ def subscriptions(request):
 
 def complete(request):
 	return render(request, "complete.html")
+
+def videos(request):
+	return render(request, "videos.html")
