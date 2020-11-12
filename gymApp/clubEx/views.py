@@ -1,3 +1,5 @@
+from django.http.response import HttpResponseRedirect
+from .forms import AccountForm
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
@@ -16,7 +18,18 @@ def home(request):
 @login_required
 def subscriptions(request):
     products = Product.objects.all()
-    return render(request, "subscription.html",{"products": products})
+    if request.method == 'POST':
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            f = form.cleaned_data['addSub']
+            name = request.user 
+            name.subscription_plan = f
+            name.save()
+            return HttpResponseRedirect('/complete/')
+    else:
+        form = AccountForm()
+
+    return render(request, "subscription.html",{"products": products, 'form':form})
 
 
 def complete(request):

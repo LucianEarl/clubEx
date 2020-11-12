@@ -20,7 +20,7 @@
 					{% for plan in p.plan_set.all %}
 					<h5 >{{ plan.human_readable_price }}</h5>
 					<div class="text-right">
-						<input type="checkbox" name="{{p.name}}" value="{{p.id}}" onclick="planSelect('{{p.name}}' ,'{{plan.human_readable_price}}', '{{plan.id}}')">
+						<input type="checkbox" name="{{p.name}}" value="{{p.id}}" onclick="planSelect('{{p.name}}' ,'{{plan.human_readable_price}}', '{{plan.id}}'), addChosen()">
 					{% endfor %}
 					</div>
 				</div>
@@ -49,11 +49,12 @@
 
 						</div>
 						<br>
-						<form id="subscription-form" action="/complete/"method="POST">
+						<form id="subscription-form" method="POST">
 							{% csrf_token %}
-							<div id="card-element" style="min-height: 40px; padding-bottom: 25px;">							
+							<div id="insertion">{{ form }}</div> 
+							<div id="card-element" style="min-height: 40px; padding-bottom: 25px;" >				
 							</div>
-							<div id="card-errors"></div>
+							<div id="card-errors"></div>							
 							<button id="submit" type="submit">
 								<span id="button-text">Subscribe</span>
 							</button>
@@ -62,7 +63,6 @@
 						<script>stripeElements()</script>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
