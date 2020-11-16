@@ -1,6 +1,6 @@
 from django.contrib import admin
 from account.models import Account
-from .models import Excercise
+from .models import Exercise
 
 
 
@@ -12,3 +12,5 @@ class UserAdmin (admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(Account, UserAdmin)
+admin.site.register(Exercise)
+# admin.site.register(Account, UserAdmin, Exercise)
