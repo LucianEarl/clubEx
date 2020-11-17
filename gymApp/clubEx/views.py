@@ -42,8 +42,8 @@ def category(request, pk):
 def complete(request):
 	return render(request, "complete.html")
 
-# def videos(request):
-# 	return render(request, "videos.html")
+def videos(request):
+	return render(request, "videos.html")
 
 
 # class VideoView(generic.ListView):

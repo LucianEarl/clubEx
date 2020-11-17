@@ -1,7 +1,7 @@
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.urls import include, path
 from gymApp import settings
-from .views import home, subscriptions, complete, videos, VideoView, exercise, category
+from .views import home, subscriptions, complete, videos, category
 from django.contrib import admin
 from account.views import(
     signup_view, user_detail,
