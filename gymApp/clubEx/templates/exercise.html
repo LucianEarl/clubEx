@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-10">
+        {% for exercise in category_exercise %}
+            <h1>{{ exercise.category.category_name}}</h1>
+            <h3>{{ exercise.exercise_name}}</h3>
+        {% endfor %}
+    </div>
+    <div class="col-2">
+        <div class="categTitle">
+            <h4>Categories</h4>
+        </div>
+        <ul>          
+            {% for cat in categories %}
+            <li>
+                {{cat.category_name}}
+            </li>
+            {% endfor %}    
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
