@@ -43,7 +43,7 @@ def complete(request):
 	return render(request, "complete.html")
 
 def videos(request):
-	return render(request, "videos.html")
+	return render(request, "video.html")
 
 
 # class VideoView(generic.ListView):

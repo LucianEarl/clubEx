@@ -14,7 +14,7 @@ urlpatterns = [
     # path('videos/', VideoView.as_view(), name="videos"),
     path('signup/', signup_view, name='signup'),
     path('user_detail/', user_detail, name='user_detail'),
-    path('video/', videos, name='videos'),
+    path('video/', videos, name='video'),
     path('category/<int:pk>/', category, name='category')
 ]
 
