@@ -10,7 +10,7 @@
                   <div class="groupedVideo">
                     {% if e.category.id == 1 %}
                       <div class="yogaVids">
-                        <h3>{{ e.exercise_name}}</h3>
+                        <a href="{% url 'video' e.id %}"> <h3>{{ e.exercise_name}}</h3> </a> 
                         <h6>{{ e.category }}</h6>
                         <video width="500" controls>
                         <source src="/static/{{e.videofile}}" type="video/mp4">
