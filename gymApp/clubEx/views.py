@@ -37,3 +37,19 @@ def complete(request):
 
 def videos(request):
 	return render(request, "videos.html")
+
+def erercise(request, pk):
+    try:
+        pet = Pet.objects.get(id = pk)
+        # missing_status = pet.missing
+        if pet.missing == True:
+            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'True'})
+        else:
+            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'False'})
+        # if form.is_valid():
+        #     if pet.
+
+    except Pet.DoesNotExist:
+        raise Http404('pet not found')
+
+    return render(request, 'pet_detail.html', {'pet': pet, 'form': form})
