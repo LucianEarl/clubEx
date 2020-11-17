@@ -10,8 +10,6 @@ from account.views import(
 urlpatterns = [
     path('', home, name='home'),
     path('subscribe/', subscriptions, name="subscription"),
-    # path('videos/', videos, name="videos"),
-    # path('videos/', VideoView.as_view(), name="videos"),
     path('signup/', signup_view, name='signup'),
     path('user_detail/', user_detail, name='user_detail'),
     path('video/', videos, name='video'),

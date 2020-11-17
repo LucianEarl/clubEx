@@ -2,29 +2,30 @@
 {% load static %}
 
 {% block content %}
-  <div>Exercise</div>
   {% if user.is_authenticated %}
     {% if user.is_subscribed %}
         <div class="row">
             <div class="col-10">
                 {% for e in category_exercise %}
-                    <h3>{{ e.exercise_name}}</h3>
-                    <h6>{{ e.category }}</h6>
-                    <video width="500" controls>
-                    <source src="/static/{{e.videofile}}" type="video/mp4">
-                    </video>
+                    <div class="groupedVideo">
+                      <h3>{{ e.exercise_name}}</h3>
+                      <h6>{{ e.category }}</h6>
+                      <video width="500" controls>
+                      <source src="/static/{{e.videofile}}" type="video/mp4">
+                      </video>
+                    </div>
                 {% endfor %}
             </div>
             <div class="col-2">
                 <div class="categTitle">
                     <h4>Categories</h4>
                 </div>
-                <ul>          
+                <ul>
                     {% for cat in categories %}
                     <li>
                         <a href="{% url 'category' cat.pk %}">{{cat.category_name}}</a>
                     </li>
-                    {% endfor %}    
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -32,5 +33,27 @@
         <p>Subscribe to see these videos!!!</p>
     {% endif %}
   {% endif %}
+
+  <script>
+    var slideIndex = [1,1];
+    var slideId = ["mySlides1", "mySlides2"]
+    showDivs(1, 0);
+    showDivs(1, 1);
+
+    function plusDivs(n, no) {
+      showDivs(slideIndex[no] += n, no);
+    }
+
+    function showDivs(n, no) {
+      var i;
+      var x = document.getElementsByClassName(slideId[no]);
+      if (n > x.length) {slideIndex[no] = 1}
+      if (n < 1) {slideIndex[no] = x.length}
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      x[slideIndex[no]-1].style.display = "block";
+    }
+  </script>
+
 {% endblock %}
- 
