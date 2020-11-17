@@ -1,5 +1,10 @@
-/* css for stats */
+/* css for stats and rating */
 
 .checked {
     color: orange;
   }
+
+.rating-btn {
+  background-color: inherit !important;
+  border: 0;
+}
