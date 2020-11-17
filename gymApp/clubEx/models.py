@@ -8,13 +8,13 @@ class Exercise(models.Model):
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
     objects = ExerciseManager()
     views = models.PositiveIntegerField(default=0)
-    slug = models.AutoSlugField(populate_from="exercise_name")
+    slug = models.AutoSlugField(populate_from="exercise_name") # helps view counter for video update
     likes = models.PositiveIntegerField(default=0,
         validators=[
             MaxValueValidator(5),
             MinValueValidator(0)
         ]
-    )
+    ) # relates to amount of likes video has been given
 
     class Meta:
         verbose_name = "Exercise"
@@ -22,3 +22,6 @@ class Exercise(models.Model):
 
     def __str__(self):
         return self.exercise_name + ': ' + self.category
+
+    def __str__(self):
+        return str(self.pk)
