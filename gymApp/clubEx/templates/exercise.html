@@ -22,7 +22,7 @@
 
                     {% if e.category.id == 2 %}
                       <div class="pilatesVids">
-                        <h3>{{ e.exercise_name}}</h3>
+                        <a href="{% url 'video' e.id %}"><h3>{{ e.exercise_name}}</h3> </a>
                         <h6>{{ e.category }}</h6>
                         <video width="500" controls>
                         <source src="/static/{{e.videofile}}" type="video/mp4">
@@ -34,7 +34,7 @@
 
                     {% if e.category.id == 3 %}
                       <div class="boxingVids">
-                        <h3>{{ e.exercise_name}}</h3>
+                        <a href="{% url 'video' e.id %}"><h3>{{ e.exercise_name}}</h3></a>
                         <h6>{{ e.category }}</h6>
                         <video width="500" controls>
                         <source src="/static/{{e.videofile}}" type="video/mp4">
@@ -46,7 +46,7 @@
 
                     {% if e.category.id == 4 %}
                       <div class="aerobicsVids">
-                        <h3>{{ e.exercise_name}}</h3>
+                        <a href="{% url 'video' e.id %}"><h3>{{ e.exercise_name}}</h3></a>
                         <h6>{{ e.category }}</h6>
                         <video width="500" controls>
                         <source src="/static/{{e.videofile}}" type="video/mp4">
