@@ -5,7 +5,7 @@ from django.db.models.deletion import CASCADE
 
 class Exercise(models.Model):
     excercise_name = models.CharField(max_length=30)
-    # category = models.ForeignKey(Category, max_length=25, on_delete=CASCADE)
+    category = models.ForeignKey(Category, max_length=25, on_delete=CASCADE)
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
     # objects = ExerciseManager()
     views = models.PositiveIntegerField(default=0)
@@ -38,7 +38,6 @@ class Category(models.Model):
     objects = CategoryManager()
     class Meta:
         verbose_name = "Category"
-        verbose_name_plural = 'Category'
+        verbose_name_plural = 'Categories'
     def __str__(self):
         return self.category_name
-
