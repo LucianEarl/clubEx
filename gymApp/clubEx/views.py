@@ -22,7 +22,7 @@ def subscriptions(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             f = form.cleaned_data['addSub']
-            name = request.user
+            name = request.user 
             name.subscription_plan = f
             name.is_subscribed = True
             name.save()
@@ -42,20 +42,4 @@ def complete(request):
 	return render(request, "complete.html")
 
 def videos(request):
-	return render(request, "videos.html")
-
-def erercise(request, pk):
-    try:
-        pet = Pet.objects.get(id = pk)
-        # missing_status = pet.missing
-        if pet.missing == True:
-            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'True'})
-        else:
-            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'False'})
-        # if form.is_valid():
-        #     if pet.
-
-    except Pet.DoesNotExist:
-        raise Http404('pet not found')
-
-    return render(request, 'pet_detail.html', {'pet': pet, 'form': form})
+	return render(request, "video.html")

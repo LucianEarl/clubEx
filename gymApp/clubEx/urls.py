@@ -10,7 +10,6 @@ from account.views import(
 urlpatterns = [
     path('', home, name='home'),
     path('subscribe/', subscriptions, name="subscription"),
-    path('videos/', videos, name="videos"),
     path('signup/', signup_view, name='signup'),
     path('user_detail/', user_detail, name='user_detail'),
     path('video/', videos, name='videos'),
@@ -22,7 +21,6 @@ urlpatterns += [
     path("complete/", complete, name="complete"),
 
 ]
-
+	
 urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
