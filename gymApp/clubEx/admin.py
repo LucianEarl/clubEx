@@ -1,6 +1,6 @@
 from django.contrib import admin
 from account.models import Account
-from .models import Exercise, Category
+from .models import Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,5 +16,4 @@ class UserAdmin (admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(Account, UserAdmin)
-admin.site.register(Exercise)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
