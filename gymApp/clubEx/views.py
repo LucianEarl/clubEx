@@ -46,14 +46,14 @@ def complete(request):
 # 	return render(request, "videos.html")
 
 
-class VideoView(generic.ListView):
-    model = Exercise
-    template_name = 'videos.html'
+# class VideoView(generic.ListView):
+#     model = Exercise
+#     template_name = 'videos.html'
 
-def exercise(request, pk):
-    try:
-        exercise = Exercise.objects.get(id = pk)
-    except Exercise.DoesNotExist:
-        raise Http404('exercise not found')
+# def exercise(request, pk):
+#     try:
+#         exercise = Exercise.objects.get(id = pk)
+#     except Exercise.DoesNotExist:
+#         raise Http404('exercise not found')
 
-    return render(request, 'exercise.html', {'exercise': exercise})
+#     return render(request, 'exercise.html', {'exercise': exercise})
