@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
 from djstripe.models import Product
 from django.contrib.auth.decorators import login_required
-from .models import Exercise
+from .models import Category, Exercise
 
 #home view
 def home(request):
@@ -25,6 +25,7 @@ def subscriptions(request):
             f = form.cleaned_data['addSub']
             name = request.user
             name.subscription_plan = f
+            name.is_subscribed = True
             name.save()
             return HttpResponseRedirect('/complete/')
     else:
@@ -32,6 +33,11 @@ def subscriptions(request):
 
     return render(request, "subscription.html",{"products": products, 'form':form})
 
+@login_required
+def category(request, pk):
+    category_exercise = Exercise.objects.filter(category=pk)
+    categories = Category.objects.all()
+    return render(request, 'exercise.html', {'pk':pk, 'category_exercise':category_exercise, 'categories':categories})
 
 def complete(request):
 	return render(request, "complete.html")
