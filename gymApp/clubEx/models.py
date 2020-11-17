@@ -27,10 +27,11 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
     def __str__(self):
         return self.category_name
+
 class Exercise(models.Model):
     exercise_name = models.CharField(max_length=30)
     category = models.ForeignKey(Category, max_length=25, on_delete=CASCADE)
-    videofile= models.FileField(upload_to='videos/', verbose_name="")    
+    videofile= models.FileField(upload_to='videos/', verbose_name="")
     views = models.PositiveIntegerField(default=0)
     # slug = models.AutoSlugField(populate_from="exercise_name") # helps view counter for video update
     likes = models.PositiveIntegerField(default=0,
@@ -50,5 +51,3 @@ class Exercise(models.Model):
 
     # def __str__(self):
     #     return str(self.pk)
-
-

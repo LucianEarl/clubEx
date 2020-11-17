@@ -7,13 +7,55 @@
         <div class="row">
             <div class="col-10">
                 {% for e in category_exercise %}
-                    <div class="groupedVideo">
-                      <h3>{{ e.exercise_name}}</h3>
-                      <h6>{{ e.category }}</h6>
-                      <video width="500" controls>
-                      <source src="/static/{{e.videofile}}" type="video/mp4">
-                      </video>
-                    </div>
+                  <div class="groupedVideo">
+                    {% if e.category.id == 1 %}
+                      <div class="yogaVids">
+                        <h3>{{ e.exercise_name}}</h3>
+                        <h6>{{ e.category }}</h6>
+                        <video width="500" controls>
+                        <source src="/static/{{e.videofile}}" type="video/mp4">
+                        </video>
+                        <button class="videos-left" onclick="plusDivs(-1, 0)">&#10094;</button>
+                        <button class="videos-right" onclick="plusDivs(1, 0)">&#10095;</button>
+                      </div>
+                    {% endif %}
+
+                    {% if e.category.id == 2 %}
+                      <div class="pilatesVids">
+                        <h3>{{ e.exercise_name}}</h3>
+                        <h6>{{ e.category }}</h6>
+                        <video width="500" controls>
+                        <source src="/static/{{e.videofile}}" type="video/mp4">
+                        </video>
+                        <button class="videos-left" onclick="plusDivs(-1, 1)">&#10094;</button>
+                        <button class="videos-right" onclick="plusDivs(1, 1)">&#10095;</button>
+                      </div>
+                    {% endif %}
+
+                    {% if e.category.id == 3 %}
+                      <div class="boxingVids">
+                        <h3>{{ e.exercise_name}}</h3>
+                        <h6>{{ e.category }}</h6>
+                        <video width="500" controls>
+                        <source src="/static/{{e.videofile}}" type="video/mp4">
+                        </video>
+                        <button class="videos-left" onclick="plusDivs(-1, 2)">&#10094;</button>
+                        <button class="videos-right" onclick="plusDivs(1, 2)">&#10095;</button>
+                      </div>
+                    {% endif %}
+
+                    {% if e.category.id == 4 %}
+                      <div class="aerobicsVids">
+                        <h3>{{ e.exercise_name}}</h3>
+                        <h6>{{ e.category }}</h6>
+                        <video width="500" controls>
+                        <source src="/static/{{e.videofile}}" type="video/mp4">
+                        </video>
+                        <button class="videos-left" onclick="plusDivs(-1, 3)">&#10094;</button>
+                        <button class="videos-right" onclick="plusDivs(1, 3)">&#10095;</button>
+                      </div>
+                    {% endif %}
+                  </div>
                 {% endfor %}
             </div>
             <div class="col-2">
@@ -34,14 +76,18 @@
     {% endif %}
   {% endif %}
 
+
+  <!-- this script allows the videos to slide along if they in divs  -->
   <script>
     var slideIndex = [1,1];
-    var slideId = ["mySlides1", "mySlides2"]
+    var slideId = ["yogaVids", "boxingVids", "pilatesVids", "aerobicsVids"]
     showDivs(1, 0);
     showDivs(1, 1);
+    showDivs(1, 2);
+    showDivs(1, 3);
 
     function plusDivs(n, no) {
-      showDivs(slideIndex[no] += n, no);
+      showDivs(slideIndex[no] += n, no); // increase the shown div
     }
 
     function showDivs(n, no) {
