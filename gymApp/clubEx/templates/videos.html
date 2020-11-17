@@ -25,6 +25,23 @@
       <button class="videos-right" onclick="plusDivs(1, 1)">&#10095;</button>
     </div>
 
+    <!-- {% for pet in pet_list %}
+      {% if pet.owner.get_username == user.get_username %}
+        <div class="pet">
+          <a href="{% url 'pet_detail' pet.id %}">
+            <img class="pet-list-image" src="{{ pet.imagefile.url }}" />
+            <h3>{{pet.pet_name | capfirst}}</h3>
+          </a>
+          <p>{{pet.colour}} {{pet.species}}</p>
+          <hr>
+
+        </div>
+
+
+      {% endif %}
+    {% endfor %} -->
+
+
     <script>
       var slideIndex = [1,1];
       var slideId = ["mySlides1", "mySlides2"]
