@@ -3,9 +3,15 @@
 {% load static %}
 
 {% block content %}
-  <div>Videos Page</div>
+  <div>
+  <h2>{{ object.exercise_name }}</h2>
+  <p>{{ object.category.category_name }}</p> 
+  <video width="500" controls>
+    <source src="/static/{{object.videofile}}" type="video/mp4">
+  </video> 
+  </div>
     <div> 
-      <form class="rate-form" action="" method="POST">
+      <form class="rate-form" action="" method="POST">{% comment %} Star Rating form and buttons  {% endcomment %}
         {% csrf_token %}
         <button type="submit" class="fa fa-star rating-btn" id="first"></button>
         <button type="submit" class="fa fa-star rating-btn" id="second"></button>
