@@ -5,7 +5,7 @@
 {% block content %}
   <div>Videos Page</div>
     <div> 
-      <form class="rate-form" action="" method="POST">
+      <form class="rate-form" action="" method="POST">{% comment %} Star Rating form and buttons  {% endcomment %}
         {% csrf_token %}
         <button type="submit" class="fa fa-star rating-btn" id="first"></button>
         <button type="submit" class="fa fa-star rating-btn" id="second"></button>
