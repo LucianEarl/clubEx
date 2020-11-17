@@ -3,7 +3,13 @@
 {% load static %}
 
 {% block content %}
-  <div>{{ object.exercise_name }}</div>
+  <div>
+  <h2>{{ object.exercise_name }}</h2>
+  <p>{{ object.category.category_name }}</p> 
+  <video width="500" controls>
+    <source src="/static/{{object.videofile}}" type="video/mp4">
+  </video> 
+  </div>
     <div> 
       <form class="rate-form" action="" method="POST">
         {% csrf_token %}
