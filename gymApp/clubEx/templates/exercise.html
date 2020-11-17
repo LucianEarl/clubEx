@@ -3,30 +3,34 @@
 
 {% block content %}
   <div>Exercise</div>
-  {% if user.is_authenticated && user.is_subscribed %}
-    <div class="row">
-        <div class="col-10">
-            {% for exercise in category_exercise %}
-                <h1>{{ exercise.category.category_name}}</h1>
-                <h3>{{ exercise.exercise_name}}</h3>
-            {% endfor %}
-        </div>
-        <div class="col-2">
-            <div class="categTitle">
-                <h4>Categories</h4>
+  {% if user.is_authenticated %}
+    {% if user.is_subscribed %}
+        <div class="row">
+            <div class="col-10">
+                {% for e in category_exercise %}
+                    <h3>{{ e.exercise_name}}</h3>
+                    <h6>{{ e.category }}</h6>
+                    <video width="500" controls>
+                    <source src="/static/{{e.videofile}}" type="video/mp4">
+                    </video>
+                {% endfor %}
             </div>
-            <ul>          
-                {% for cat in categories %}
-                <li>
-                    {{cat.category_name}}
-                </li>
-                {% endfor %}    
-            </ul>
+            <div class="col-2">
+                <div class="categTitle">
+                    <h4>Categories</h4>
+                </div>
+                <ul>          
+                    {% for cat in categories %}
+                    <li>
+                        {{cat.category_name}}
+                    </li>
+                    {% endfor %}    
+                </ul>
+            </div>
         </div>
-    </div>
-  {% else %}
-    <p>Log in to see these videos!!!</p>
+    {% else %}
+        <p>Log in to see these videos!!!</p>
+    {% endif %}
   {% endif %}
-
-
 {% endblock %}
+ 

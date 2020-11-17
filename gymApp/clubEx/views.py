@@ -1,6 +1,7 @@
-from django.http.response import HttpResponseRedirect
-from .forms import AccountForm
-from django.shortcuts import render
+from .functions import handle_uploaded_file
+from django.http.response import HttpResponse, HttpResponseRedirect
+from .forms import AccountForm, UploadForm
+from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
@@ -39,11 +40,29 @@ def category(request, pk):
     categories = Category.objects.all()
     return render(request, 'exercise.html', {'pk':pk, 'category_exercise':category_exercise, 'categories':categories})
 
+
+def exercises(request):
+    category_exercise = Exercise.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'exercise.html', {'category_exercise':category_exercise, 'categories':categories})
+
 def complete(request):
 	return render(request, "complete.html")
 
 def videos(request):
 	return render(request, "video.html")
+
+def upload(request):  
+    if request.method == 'POST':  
+        form=UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+        handle_uploaded_file(request.FILES['videofile'])  
+        return HttpResponseRedirect('/exercises/')  
+    else:  
+        video = UploadForm()  
+        return render(request,"upload.html",{'form':video})  
 
 
 # class VideoView(generic.ListView):

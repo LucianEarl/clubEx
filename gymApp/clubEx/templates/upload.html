@@ -1,0 +1,12 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div>Upload videos</div>
+<form method="POST" class="post-form" enctype="multipart/form-data">  
+    {% csrf_token %}  
+    {{ form.as_p }}  
+    <button type="submit" class="save btn btn-default">Save</button>  
+</form>  
+{% endblock %}

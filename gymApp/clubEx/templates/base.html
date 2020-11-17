@@ -24,21 +24,21 @@
                 {% endif %}
             </div>
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href={% url "home" %}><i class="fas fa-dumbbell"></i>Club EX</a>
+                <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-dumbbell"></i>Club EX</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href={% url "home" %}>Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                      <a class="nav-link" href={% url "subscription" %}>Subscribe</a>
+                      <a class="nav-link" href="{% url 'subscription' %}">Subscribe</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href={% url "video" %}>Videos</a>
+                      <a class="nav-link" href="{% url 'video' %}">Videos</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'user_detail' %}">My Account</a>
