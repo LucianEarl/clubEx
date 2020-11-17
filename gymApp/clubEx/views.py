@@ -36,9 +36,10 @@ def subscriptions(request):
 
 @login_required
 def category(request, pk):
-    category_exercise = Exercise.objects.filter(category=pk)
+    ca_exercise = Exercise.objects.filter(category=pk)
+    
     categories = Category.objects.all()
-    return render(request, 'exercise.html', {'pk':pk, 'category_exercise':category_exercise, 'categories':categories})
+    return render(request, 'categories.html', {'pk':pk,'ca_exercise':ca_exercise, 'categories':categories})
 
 
 def exercises(request):

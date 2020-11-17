@@ -1,17 +1,18 @@
+
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-  <div>Exercise</div>
-  {% if user.is_authenticated %}
+{% if ca_exercise %}
+{% if user.is_authenticated %}
     {% if user.is_subscribed %}
         <div class="row">
             <div class="col-10">
-                {% for e in category_exercise %}
-                    <h3>{{ e.exercise_name}}</h3>
-                    <h6>{{ e.category }}</h6>
+                {% for item in ca_exercise %}  
+                    <h3>{{ item.exercise_name}}</h3>
+                    <h6>{{ item.category }}</h6>
                     <video width="500" controls>
-                    <source src="/static/{{e.videofile}}" type="video/mp4">
+                    <source src="/static/{{item.videofile}}" type="video/mp4">
                     </video>
                 {% endfor %}
             </div>
@@ -28,9 +29,11 @@
                 </ul>
             </div>
         </div>
-    {% else %}
+        {% else %}
         <p>Subscribe to see these videos!!!</p>
     {% endif %}
   {% endif %}
+{% else %}
+    <h4>Page does not exist</h4>
+{% endif %}
 {% endblock %}
- 
