@@ -7,25 +7,29 @@
 {% if user.is_authenticated %}
     {% if user.is_subscribed %}
         <div class="row">
-            <div class="col-10">
-                {% for item in ca_exercise %}  
+            <div class="col-10 groupedVideo">
+                {% for item in ca_exercise %}
+                  <div class="videos">
                     <h3>{{ item.exercise_name}}</h3>
                     <h6>{{ item.category }}</h6>
+                    <button class="videos-left" onclick="plusDivs(-1, 0)">&#10094;</button>
                     <video width="500" controls>
                     <source src="/static/{{item.videofile}}" type="video/mp4">
                     </video>
+                    <button class="videos-right" onclick="plusDivs(1, 0)">&#10095;</button>
+                  </div>
                 {% endfor %}
             </div>
             <div class="col-2">
                 <div class="categTitle">
                     <h4>Categories</h4>
                 </div>
-                <ul>          
+                <ul>
                     {% for cat in categories %}
                     <li>
                         <a href="{% url 'category' cat.pk %}">{{cat.category_name}}</a>
                     </li>
-                    {% endfor %}    
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -36,4 +40,26 @@
 {% else %}
     <h4>Page does not exist</h4>
 {% endif %}
+<!-- this script allows the videos to slide along if they in divs  -->
+<script>
+  var slideIndex = [1];
+  var slideId = ["videos"]
+  showDivs(1, 0);
+
+
+  function plusDivs(n, no) {
+    showDivs(slideIndex[no] += n, no); // increase the shown div
+  }
+
+  function showDivs(n, no) {
+    var i;
+    var x = document.getElementsByClassName(slideId[no]);
+    if (n > x.length) {slideIndex[no] = 1}
+    if (n < 1) {slideIndex[no] = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    x[slideIndex[no]-1].style.display = "block";
+  }
+</script>
 {% endblock %}
