@@ -1,13 +1,8 @@
+
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-  <div>Exercise</div>
-  {% if user.is_authenticated %}
-    <p>look at this cool video on how to do it</p>
-  {% else %}
-    <p>Log in to see this exercise!!!</p>
-  {% endif %}
 <div class="row">
     <div class="col-10">
         {% for exercise in category_exercise %}

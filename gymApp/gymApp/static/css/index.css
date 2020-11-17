@@ -127,7 +127,7 @@ button[type="submit"]{
 }
 
 .card:hover{
-   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247;
+   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247; 
    box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247;
 }
 
@@ -142,15 +142,15 @@ button[type="submit"]{
    -webkit-transition: box-shadow 150ms ease;
    transition: box-shadow 150ms ease;
 }
-
+ 
 .StripeElement--focus {
    box-shadow: 0 2px 3px 0 #070b47;
 }
-
+ 
 .StripeElement--invalid {
    border-color: red;
 }
-
+ 
 .StripeElement--webkit-autofill {
    background-color: #fefde5 !important;
 }
@@ -193,9 +193,3 @@ button[type="submit"]{
    background: rgb(19, 19, 51);
  }
 
-.mySlides1, .mySlides2{
-  height: 300px;
-}
-.videos-left, .videos-right {
-  margin: 10px auto;
-}
