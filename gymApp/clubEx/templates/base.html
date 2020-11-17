@@ -37,9 +37,11 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'subscription' %}">Subscribe</a>
                     </li>
+                    {% if user.is_subscribed == True %}
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'exercises' %}">Videos</a>
+                      <a class="nav-link" href="{% url 'exercises' %}">Exercises</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'user_detail' %}">My Account</a>
                     </li>

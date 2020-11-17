@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-  <div>Videos Page</div>
+  <div>{{ object.exercise_name }}</div>
     <div> 
       <form class="rate-form" action="" method="POST">
         {% csrf_token %}

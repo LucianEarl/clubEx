@@ -1,13 +1,15 @@
-from .functions import handle_uploaded_file
-from django.http.response import HttpResponse, HttpResponseRedirect
-from .forms import AccountForm, UploadForm
-from django.shortcuts import get_object_or_404, render
-from django.views import generic
-from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
-from djstripe.models import Product
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from djstripe.models import Product
+from django.views.generic.detail import DetailView
+
+from .forms import AccountForm, UploadForm
+from .functions import handle_uploaded_file
 from .models import Category, Exercise
+
 
 #home view
 def home(request):
@@ -50,8 +52,7 @@ def exercises(request):
 def complete(request):
 	return render(request, "complete.html")
 
-def videos(request):
-	return render(request, "video.html")
+
 
 def upload(request):  
     if request.method == 'POST':  
@@ -64,6 +65,10 @@ def upload(request):
     else:  
         video = UploadForm()  
         return render(request,"upload.html",{'form':video})  
+
+class VideoDetailView(DetailView):
+    model = Exercise
+    template_name = 'video.html'
 
 
 # class VideoView(generic.ListView):
