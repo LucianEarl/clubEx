@@ -5,12 +5,13 @@
 {% block content %}
   <div>Videos Page</div>
     <div> 
-      
-      <span class="fa fa-star checked" id="first"></span>
-      <span class="fa fa-star" id="second"></span>
-      <span class="fa fa-star" id="third"></span>
-      <span class="fa fa-star" id="fourth"></span>
-      <span class="fa fa-star" id="fifth"></span>
+      <form class="rate-form" action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="fa fa-star rating-btn" id="first"></button>
+        <button type="submit" class="fa fa-star rating-btn" id="second"></button>
+        <button type="submit" class="fa fa-star rating-btn" id="third"></button>
+        <button type="submit" class="fa fa-star rating-btn" id="fourth"></button>
+        <button type="submit" class="fa fa-star rating-btn" id="fifth"></button>
     </div>
     <br>
     <div id="confirm-box">
