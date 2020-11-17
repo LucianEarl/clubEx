@@ -1,11 +1,12 @@
 from django.http.response import HttpResponseRedirect
 from .forms import AccountForm
 from django.shortcuts import render
+from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
-from django.shortcuts import render
 from djstripe.models import Product
 from django.contrib.auth.decorators import login_required
+from .models import Exercise
 
 #home view
 def home(request):
@@ -35,21 +36,18 @@ def subscriptions(request):
 def complete(request):
 	return render(request, "complete.html")
 
-def videos(request):
-	return render(request, "videos.html")
+# def videos(request):
+# 	return render(request, "videos.html")
 
-def erercise(request, pk):
+
+class VideoView(generic.ListView):
+    model = Exercise
+    template_name = 'videos.html'
+
+def exercise(request, pk):
     try:
-        pet = Pet.objects.get(id = pk)
-        # missing_status = pet.missing
-        if pet.missing == True:
-            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'True'})
-        else:
-            form = MissingPetForm(request.POST or None, initial = {'Pet_missing' : 'False'})
-        # if form.is_valid():
-        #     if pet.
+        exercise = Exercise.objects.get(id = pk)
+    except Exercise.DoesNotExist:
+        raise Http404('exercise not found')
 
-    except Pet.DoesNotExist:
-        raise Http404('pet not found')
-
-    return render(request, 'pet_detail.html', {'pet': pet, 'form': form})
+    return render(request, 'exercise.html', {'exercise': exercise})

@@ -4,6 +4,7 @@
 {% block content %}
   <div>Exercise</div>
   {% if user.is_authenticated %}
+    <h1>{{exercise.exercise_name|capfirst}} </h1>
     <p>look at this cool video on how to do it</p>
   {% else %}
     <p>Log in to see this exercise!!!</p>
