@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Exercise(models.Model):
 
@@ -13,4 +14,4 @@ class Exercise(models.Model):
     imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
     def __str__(self):
-        return self.pet_name + ': ' + str(self.imagefile) + self.colour + ' ' + self.species
+        return self.exercise_name + ': ' + self.type

@@ -71,6 +71,14 @@ body {
 button[type="submit"]{
   margin: 10px auto;
 }
+.btn-outline-success{
+   color: rgb(19, 19, 51)!important;
+   border-color: rgb(19, 19, 51)!important;
+}
+.btn-outline-success:hover {
+   color: aliceblue !important;
+   background-color: rgb(19, 19, 51)!important;
+}
 .copyright{
    text-align: center;
    padding-top: 50px;
