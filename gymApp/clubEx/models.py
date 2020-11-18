@@ -49,5 +49,5 @@ class Exercise(models.Model):
     def __str__(self):
         return self.exercise_name + ': ' + str(self.videofile)
 
-    # def __str__(self):
-    #     return str(self.pk)
+    def __str__(self):
+        return str(self.pk)

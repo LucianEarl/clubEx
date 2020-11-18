@@ -80,6 +80,17 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Exercise.objects.filter(exercise_name__icontains=query)
+def VideoViews(self):
+
+    if(Exercise.views.objects.count()<=0):
+        x=Exercise.views.objects.create()
+        x.save()
+    else:
+        x=Exercise.views.objects.all()[0]
+        x.hits=x.hits+1
+        x.save()
+    context={'videoviews':x.hits}
+    return render(self, 'video.html',context=context)
 
 
 # class VideoView(generic.ListView):
