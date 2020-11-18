@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+{% if user.is_authenticated %}
+{% if user.is_subscribed == True %}
   <div>
   <h2>{{ object.exercise_name }}</h2>
   <p>{{ object.category.category_name }}</p> 
@@ -22,4 +24,6 @@
     <br>
     <div id="confirm-box">
     </div>
+{% endif %}
+{% endif %}
 {% endblock %}
