@@ -70,6 +70,18 @@ class VideoDetailView(DetailView):
     model = Exercise
     template_name = 'video.html'
 
+    def VideoViews(self):
+
+        if(Exercise.views.objects.count()<=0):
+            x=Exercise.views.objects.create()
+            x.save()
+        else:
+            x=Exercise.views.objects.all()[0]
+            x.hits=x.hits+1
+            x.save()
+        context={'videoviews':x.hits}
+        return render(self, 'video.html',context=context)
+
 
 # class VideoView(generic.ListView):
 #     model = Exercise
