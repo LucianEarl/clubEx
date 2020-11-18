@@ -193,9 +193,19 @@ button[type="submit"]{
    background: rgb(19, 19, 51);
  }
 
-.mySlides1, .mySlides2{
-  height: 300px;
+.groupedVideo {
+  padding-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
-.videos-left, .videos-right {
-  margin: 10px auto;
+.videos-left{
+  height: 250px;
+  float: left;
+}
+
+.videos-right {
+  height: 250px;
+  float: right;
 }
