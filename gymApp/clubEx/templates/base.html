@@ -28,6 +28,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
+              
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -45,6 +46,11 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'user_detail' %}">My Account</a>
                     </li>
+                      {% if user.is_subscribed == True %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'videos' %}">Video</a>
+                      </li>
+                      {% endif %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
                     </li>
@@ -54,9 +60,9 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'signup'%}?next={{request.path}}">Sign up</a>
-                    </li>
+                    </li>                   
                     {% endif %}
-                  </ul>
+                  </ul>     
                 </div>
                 {% url 'exercises' as video_url %}
                 {% if request.get_full_path == video_url %}

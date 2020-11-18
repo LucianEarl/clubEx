@@ -1,7 +1,14 @@
 from django.db import models
-from django.conf import settings
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models.deletion import CASCADE
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+
+class CategoryManager(models.Manager):
+    def create_category(self, category_name):
+        category = self.create(category_name=category_name)
+        category.save(using=self._db)
+        return category
+
 
 class CategoryManager(models.Manager):
     def create_category(self, category_name):

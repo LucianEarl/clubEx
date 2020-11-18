@@ -28,7 +28,7 @@ def subscriptions(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             f = form.cleaned_data['addSub']
-            name = request.user
+            name = request.user 
             name.subscription_plan = f
             name.is_subscribed = True
             name.save()
