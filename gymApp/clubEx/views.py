@@ -40,15 +40,15 @@ def subscriptions(request):
 
 @login_required
 def category(request, pk):
-    ca_exercise = Exercise.objects.filter(category=pk)
+    ca_exercise = Exercise.objects.filter(category=pk).order_by('exercise_name')
     
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('category_name')
     return render(request, 'categories.html', {'pk':pk,'ca_exercise':ca_exercise, 'categories':categories})
 
 @login_required
 def exercises(request):
-    category_exercise = Exercise.objects.all()
-    categories = Category.objects.all()
+    category_exercise = Exercise.objects.all().order_by('exercise_name')
+    categories = Category.objects.all().order_by('category_name')
     return render(request, 'exercise.html', {'category_exercise':category_exercise, 'categories':categories})
 
 @login_required
