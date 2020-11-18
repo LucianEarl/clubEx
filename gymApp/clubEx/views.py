@@ -71,7 +71,7 @@ class VideoDetailView(DetailView):
     model = Exercise
     template_name = 'video.html'
 
-    def VideoViews(self):
+    def VideoViews(self): # testing for video views
 
         if(Exercise.views.objects.count()<=0):
             x=Exercise.views.objects.create()
