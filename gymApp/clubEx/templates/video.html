@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+{% if user.is_authenticated %}
+{% if user.is_subscribed == True %}
   <div>
   <h2>{{ object.exercise_name }}</h2>
   <p>{{ object.category.category_name }}</p> 
@@ -24,4 +26,6 @@
     <br>
     <p class="videoview" id="hitview">0</p>
     </div>
+{% endif %}
+{% endif %}
 {% endblock %}

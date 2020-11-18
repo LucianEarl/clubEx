@@ -43,17 +43,18 @@ def category(request, pk):
     categories = Category.objects.all()
     return render(request, 'categories.html', {'pk':pk,'ca_exercise':ca_exercise, 'categories':categories})
 
-
+@login_required
 def exercises(request):
     category_exercise = Exercise.objects.all()
     categories = Category.objects.all()
     return render(request, 'exercise.html', {'category_exercise':category_exercise, 'categories':categories})
 
+@login_required
 def complete(request):
 	return render(request, "complete.html")
 
 
-
+@login_required
 def upload(request):  
     if request.method == 'POST':  
         form=UploadForm(request.POST, request.FILES)
