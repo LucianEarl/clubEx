@@ -1,3 +1,4 @@
+from django.db.models import query
 from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -5,6 +6,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from djstripe.models import Product
 from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 
 from .forms import AccountForm, UploadForm
 from .functions import handle_uploaded_file
@@ -70,6 +72,14 @@ def upload(request):
 class VideoDetailView(DetailView):
     model = Exercise
     template_name = 'video.html'
+
+class SearchResultsView(ListView):
+    model = Exercise
+    template_name= 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Exercise.objects.filter(exercise_name__icontains=query)
 
 
 # class VideoView(generic.ListView):
