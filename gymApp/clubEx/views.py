@@ -69,10 +69,12 @@ def upload(request):
         video = UploadForm()  
         return render(request,"upload.html",{'form':video})  
 
-class VideoDetailView(DetailView):
-    model = Exercise
-    template_name = 'video.html'
+def videoDetail(request, pk):
+    object = Exercise.objects.get(pk=pk)
+    object.views = object.views+1
+    object.save()
 
+    return render(request, 'video.html', {'pk':pk, 'object':object})
     # def VideoViews(self): # testing for video views
 
     #     if(Exercise.views.objects.count()<=0):
