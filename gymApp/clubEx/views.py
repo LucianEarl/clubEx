@@ -69,21 +69,23 @@ def upload(request):
         video = UploadForm()  
         return render(request,"upload.html",{'form':video})  
 
-class VideoDetailView(DetailView):
-    model = Exercise
-    template_name = 'video.html'
+def videoDetail(request, pk):
+    object = Exercise.objects.get(pk=pk)
+    object.views = object.views+1
+    object.save()
 
-    def VideoViews(self): # testing for video views
+    return render(request, 'video.html', {'pk':pk, 'object':object})
+    # def VideoViews(self): # testing for video views
 
-        if(Exercise.views.objects.count()<=0):
-            x=Exercise.views.objects.create()
-            x.save()
-        else:
-            x=Exercise.views.objects.all()[0]
-            x.hits=x.hits+1
-            x.save()
-        context={'videoviews':x.hits}
-        return render(self, 'video.html',context=context)
+    #     if(Exercise.views.objects.count()<=0):
+    #         x=Exercise.views.objects.create()
+    #         x.save()
+    #     else:
+    #         x=Exercise.views.objects.all()[0]
+    #         x.hits=x.hits+1
+    #         x.save()
+    #     context={'videoviews':x.hits}
+    #     return render(self, 'video.html',context=context)
 class SearchResultsView(ListView):
     model = Exercise
     template_name= 'search_results.html'
@@ -91,17 +93,7 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Exercise.objects.filter(exercise_name__icontains=query)
-def VideoViews(self):
 
-    if(Exercise.views.objects.count()<=0):
-        x=Exercise.views.objects.create()
-        x.save()
-    else:
-        x=Exercise.views.objects.all()[0]
-        x.hits=x.hits+1
-        x.save()
-    context={'videoviews':x.hits}
-    return render(self, 'video.html',context=context)
 
 
 # class VideoView(generic.ListView):

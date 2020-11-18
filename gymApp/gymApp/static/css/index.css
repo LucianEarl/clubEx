@@ -210,3 +210,17 @@ button[type="submit"]{
   height: 250px;
   float: right;
 }
+.list-group{
+   list-style: none;
+   
+}
+.categTitle{
+   padding-top: 50px;
+   padding-bottom: 20px;
+}
+.list-group li a{
+   text-decoration-color: #071247;
+   text-decoration: none;
+   text-shadow: #070b47;
+   
+}

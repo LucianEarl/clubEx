@@ -21,17 +21,17 @@
                 {% endfor %}
             </div>
             <div class="col-2">
-                <div class="categTitle">
-                    <h4>Categories</h4>
-                </div>
-                <ul>
-                    {% for cat in categories %}
-                    <li>
-                        <a href="{% url 'category' cat.pk %}">{{ cat.category_name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+              <div class="categTitle ">
+                  <h4>Categories</h4>
+              </div>
+              <ul class="list-group list-group-flush">   
+                {% for cat in categories %}
+                <li class="list-group-item">
+                    <a href="{% url 'category' cat.pk %}" class="text-dark">{{cat.category_name}}</a>
+                </li>
+                {% endfor %}
+              </ul>  
+          </div>
         </div>
         {% else %}
         <p>Subscribe to see these videos!!!</p>
