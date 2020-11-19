@@ -26,7 +26,29 @@ const handleStarSelect = (size) => {
     }
 }
 
-
+// changes rating star id to int 
+const getNumericValue = (StringValue) =>{
+    let NumericValue;
+    if (StringValue === 'first') {
+        NumericValue = 1
+    }
+    else if (StringValue === 'second') {
+        NumericValue = 2
+    }
+    else if (StringValue === 'third') {
+        NumericValue = 3
+    }
+    else if (StringValue === 'fourth') {
+        NumericValue = 4
+    }
+    else if (StringValue === 'fifth') {
+        NumericValue = 5
+    }
+    else {
+        NumericValue = 0
+    }
+    return NumericValue
+}
 
 
 console.log("This is", one)
@@ -58,12 +80,23 @@ const handleSelect = (selection) => {
     }
 }
 
-// if statement to stop error for having no start selected, also allows video page to be refreshed
+// if statement with foreach loop to help refresh page after it is refreshed and also to allow rating to be submited
 if(one) {
     const star = [one, two, three, four, five]
 
     star.forEach(item=> item.addEventListener('mouseover', (event)=> {
         handleSelect(event.target.id)
-    }));
+    }))
+
+    star.forEach(item=> item.addEventListener('click', (event) => {
+        const val = event.target.id
+
+        form.addEventListener('submit', e=>{
+            e.preventDefault()
+            const ratingid = event.target.id
+            const val_num = getNumericValue(val)
+
+        })
+    }))
 }
 
