@@ -22,9 +22,17 @@ Allow content to be searched using a generic search bar (with drop down suggesti
 
 Keeps a running total of how many times a video has been viewed, for feedback to the gym
 
-Videos can be rated by the customer, e.g. like / dislike, or ranking from 1 -5 stars (students to decide)
+Videos can be rated by the customer, e.g. like / dislike, or ranking from 1-5 stars (students to decide)
 
 A stats page that shows the name of the video that was viewed, and how long it was viewed for i.e. a lifetime tally of the workout time (students to think about how best to show this)
 
 SuperUser - test@test.com, pass: test
 test user - test3@test.com. pass: NorthDakota
+
+
+Additional requirements:
+
+- alphabetical sorting
+- sort videos by view count
+- user dependent video sorting, different for different users
+- featured video
