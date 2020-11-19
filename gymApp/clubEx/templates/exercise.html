@@ -7,23 +7,15 @@
     {% if user.is_subscribed %}
       <div class="row">
           <div class="col-10">
-
             <div class="groupedVideo">
-              <h1>Featured Videos (Just yoga for now)</h1>
-                {% for f in featured_exercise %}
-                    {% if f.category.id == 1 %}
-                      <div class="featuredVideos">
-                        <a href="{% url 'video' f.id %}"> <h3>{{ f.exercise_name}}: {{ f.category.category_name }}</h3></a>
-                        <button class="videos-left" onclick="plusDivs(-1, 0)">&#10094;</button>
-                        <video width="500" controls>
-                          <source src="/static/{{f.videofile}}" type="video/mp4">
-                        </video>
-                        <button class="videos-right" onclick="plusDivs(1, 0)">&#10095;</button>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+              <h1>Featured Video</h1>
+              <div class="featuredVideos">
+                <a href="{% url 'video' featured.id %}"> <h3>{{ featured.exercise_name}}: {{ featured.category.category_name }}</h3></a> 
+                <video width="800" controls>
+                  <source src="/static/{{featured.videofile}}" type="video/mp4">
+                </video>             
+                </div>
               </div>
-
               <br>
               <div class="sortedVids">
                 <h1>All videos, sorted by views</h1>

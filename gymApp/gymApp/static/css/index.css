@@ -197,17 +197,16 @@ button[type="submit"]{
 .groupedVideo {
   display: block;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin:0 auto;
+  
+}
+video{
+   margin: 0 auto;
 }
 .soloVideo {
   display: block;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  min-width: 500px;
+  margin:0 auto;
   border-bottom: 2px solid darkgrey;
 }
 .sortedVids{
