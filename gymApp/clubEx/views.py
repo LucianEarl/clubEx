@@ -76,17 +76,16 @@ def videoDetail(request, pk):
     object.save()
 
     return render(request, 'video.html', {'pk':pk, 'object':object})
-    # def VideoViews(self): # testing for video views
 
-    #     if(Exercise.views.objects.count()<=0):
-    #         x=Exercise.views.objects.create()
-    #         x.save()
-    #     else:
-    #         x=Exercise.views.objects.all()[0]
-    #         x.hits=x.hits+1
-    #         x.save()
-    #     context={'videoviews':x.hits}
-    #     return render(self, 'video.html',context=context)
+def rate_video(request, pk):
+    if request.method == 'POST':
+        el_id = Exercise.objects.get(pk=pk)
+        val = request.POST.get('val')
+        obj = Exercise.objects.get(id=el_id)
+        obj.likes = val
+        obj.save()
+        
+        
 class SearchResultsView(ListView):
     model = Exercise
     template_name= 'search_results.html'
