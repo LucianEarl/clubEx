@@ -1,3 +1,4 @@
+from django.db.models import query
 from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
@@ -44,7 +45,6 @@ def category(request, pk):
 def exercises(request):
     category_exercise = Exercise.objects.all().order_by('-views')
     featured = category_exercise[0]
-    print(featured)
     categories = Category.objects.all().order_by('category_name')
     return render(request, 'exercise.html', {'category_exercise':category_exercise, 'categories':categories, 'featured':featured})
 

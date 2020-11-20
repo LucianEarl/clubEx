@@ -4,6 +4,7 @@
 
 {% block content %}
   <h1>Search Results</h1>
+  {% if object_list %}
   {% for exercise in object_list %}
     <div>
       <h2>{{ exercise.exercise_name }}</h2>
@@ -25,4 +26,7 @@
     <div id="confirm-box">
     </div>
   {% endfor %}
+  {% else %}
+  <p>There are no results matching your search.</p>
+  {% endif %}
 {% endblock %}
