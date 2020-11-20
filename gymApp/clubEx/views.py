@@ -44,7 +44,6 @@ def category(request, pk):
 def exercises(request):
     category_exercise = Exercise.objects.all().order_by('-views')
     featured = category_exercise[0]
-    print(featured)
     categories = Category.objects.all().order_by('category_name')
     return render(request, 'exercise.html', {'category_exercise':category_exercise, 'categories':categories, 'featured':featured})
 

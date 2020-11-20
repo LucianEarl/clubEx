@@ -12,6 +12,7 @@
         <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/search.js' %}"></script>
     </head>
 
     <body>
@@ -63,10 +64,17 @@
                 </div>
                 {% url 'exercises' as video_url %}
                 {% if request.get_full_path == video_url %}
-                <form class="form-inline" action="{% url 'search-results' %}" method="GET">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <div class="dropdown form-inline">
+                  <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search video exercises" id="myInput" onclick="myFunction() "onkeyup="filterFunction()">
+                  </div>
+                  <div id="myDropdown" class="dropdown-content">   
+                    {% for i in category_exercise %}        
+                    <a href="{% url 'video' i.id %}">{{ i.exercise_name }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
                 {% endif %}
               </nav>
             <div class="body">
