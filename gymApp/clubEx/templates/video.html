@@ -7,7 +7,7 @@
 {% if user.is_subscribed == True %}
   <div>
     <h2>{{ object.exercise_name }} - Video Exercise</h2>
-    <p>Category: {{ object.category.category_name }}</p> 
+    <p>Category: {{ object.category.category_name }}  --  {{object.length}}</p> 
     
     <video width="500" controls>
       <source src="/static/{{object.videofile}}" type="video/mp4">

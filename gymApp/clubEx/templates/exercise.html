@@ -10,7 +10,7 @@
             <div class="groupedVideo">
               <h1>Featured Video</h1>
               <div class="featuredVideos">
-                <a href="{% url 'video' featured.id %}"> <h3>{{ featured.exercise_name}}: {{ featured.category.category_name }}</h3></a> 
+                <a href="{% url 'video' featured.id %}"> <h3>{{ featured.exercise_name}}: {{ featured.category.category_name }} -- {{ featured.length }}</h3></a> 
                 <video width="800" controls>
                   <source src="/static/{{featured.videofile}}" type="video/mp4">
                 </video>             
@@ -21,7 +21,7 @@
                 <h1>All videos, sorted by views</h1>
                 {% for e in category_exercise %}
                 <div class="soloVideo">
-                  <a href="{% url 'video' e.id %}"><h2>{{ e.exercise_name }}: {{ e.category.category_name }}</h2></a>
+                  <a href="{% url 'video' e.id %}"><h2>{{ e.exercise_name }}: {{ e.category.category_name }} -- {{ e.length }}</h2></a>
                   <video width="500" controls>
                     <source src="/static/{{e.videofile}}" type="video/mp4">
                   </video>

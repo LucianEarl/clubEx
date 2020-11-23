@@ -17,11 +17,12 @@ class CategoryManager(models.Manager):
         return category
 
 class ExerciseManager(models.Manager):
-    def create_exercise(self, exercise_name, category, videofile):
+    def create_exercise(self, exercise_name, category, videofile, length):
         exercise = self.create(
             exercise_name=exercise_name,
             category=category,
-            videofile=videofile
+            videofile=videofile,
+            length=length
         )
         exercise.save(using=self._db)
         return exercise
@@ -40,7 +41,7 @@ class Exercise(models.Model):
     category = models.ForeignKey(Category, max_length=25, on_delete=CASCADE)
     videofile= models.FileField(upload_to='videos/', verbose_name="")
     views = models.PositiveIntegerField(default=0)
-    # slug = models.AutoSlugField(populate_from="exercise_name") # helps view counter for video update
+    length = models.CharField(max_length=12, blank=True)
     likes = models.PositiveIntegerField(default=0,
         validators=[
             MaxValueValidator(5),
