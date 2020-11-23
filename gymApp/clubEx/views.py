@@ -7,7 +7,7 @@ from djstripe.models import Product
 from django.views.generic import ListView
 from .forms import AccountForm, UploadForm
 from .functions import handle_uploaded_file
-from .models import Category, Exercise
+from .models import Category, Exercise, UserVidWatch
 
 
 #home view
@@ -66,11 +66,21 @@ def upload(request):
         video = UploadForm()
         return render(request,"upload.html",{'form':video})
 
+@login_required
 def videoDetail(request, pk):
     object = Exercise.objects.get(pk=pk)
     object.views = object.views+1
     object.save()
 
+    if UserVidWatch.filter(joined_video = object, joined_user = request.user).exists():
+        currentUserVid = UserVidWatch.objects.get(
+            Q(joined_user=request.user),
+            Q(joined_video=object))
+        currentUserVid.specific_views = currentUserVid.specific_views + 1
+        currentUserVid.save()
+    else:
+        currentUserVid = UserVidWatch.objects.create(joined_video=object, joined_user=request.user, specific_views = 1)
+        # currentUserVid.save()
     return render(request, 'video.html', {'pk':pk, 'object':object})
 
 def rate_video(request, pk):
@@ -80,8 +90,8 @@ def rate_video(request, pk):
         obj = Exercise.objects.get(id=el_id)
         obj.likes = val
         obj.save()
-        
-        
+
+
 class SearchResultsView(ListView):
     model = Exercise
     template_name= 'search_results.html'
