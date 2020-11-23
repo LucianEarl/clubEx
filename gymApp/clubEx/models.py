@@ -22,14 +22,14 @@ class ExerciseManager(models.Manager):
         return exercise
 
 class UserVidWatchManager(models.Manager):
-    def create_watchedVid(self, joined_user, joined_video, specific_views):
-        watchedVid = self.create(
+    def create_uservidwatch(self, joined_user, joined_video, specific_views):
+        uservidwatch = self.create(
             joined_user=joined_user,
             joined_video=joined_video,
             specific_views=specific_views,
         )
-        watchedVid.save(using=self._db)
-        return watchedVid
+        uservidwatch.save(using=self._db)
+        return uservidwatch
 
 class Category(models.Model):
     category_name = models.CharField(max_length = 20)

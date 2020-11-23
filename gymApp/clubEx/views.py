@@ -72,14 +72,14 @@ def videoDetail(request, pk):
     object.views = object.views+1
     object.save()
 
-    if UserVidWatch.filter(joined_video = object, joined_user = request.user).exists():
+    if UserVidWatch.objects.filter(joined_video = object, joined_user = request.user).exists():
         currentUserVid = UserVidWatch.objects.get(
             Q(joined_user=request.user),
             Q(joined_video=object))
         currentUserVid.specific_views = currentUserVid.specific_views + 1
         currentUserVid.save()
     else:
-        currentUserVid = UserVidWatch.objects.create(joined_video=object, joined_user=request.user, specific_views = 1)
+        currentUserVid = UserVidWatch.objects.create_uservidwatch(joined_video=object, joined_user=request.user, specific_views = 1)
         # currentUserVid.save()
     return render(request, 'video.html', {'pk':pk, 'object':object})
 
