@@ -8,7 +8,7 @@
       <div>
         <h2>{{ object.exercise_name }} - Video Exercise</h2>
         <p>Category: {{ object.category.category_name }}  --  {{object.length}}</p>
-        <div>
+        <div class="d-flex justify-content-between" style="width: 500px;">
           <button class="btn btn-outline-dark" disabled>
             Number of overall views: <span class="badge badge-pill badge-danger">{{object.views}}</span>
             <span class="sr-only">unread messages</span>
@@ -22,7 +22,7 @@
           <source src="/static/{{object.videofile}}" type="video/mp4">
         </video>
       </div>
-      <div class="d-flex justify-content-between" style="width: 500px;">
+      
 
         <div>
           <form class="rate-form" action="" method="POST" id="{{object.id}}">{% comment %} Star Rating form and buttons  {% endcomment %}
