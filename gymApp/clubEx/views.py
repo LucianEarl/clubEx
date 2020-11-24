@@ -8,7 +8,9 @@ from django.views.generic import ListView
 from .forms import AccountForm, UploadForm
 from .functions import handle_uploaded_file
 from .models import Category, Exercise, UserVidWatch
+import logging
 
+logger = logging.getLogger(__name__)
 
 #home view
 def home(request):
@@ -72,16 +74,17 @@ def videoDetail(request, pk):
     object.views = object.views+1
     object.save()
 
-    if UserVidWatch.objects.filter(joined_video = object, joined_user = request.user).exists():
-        currentUserVid = UserVidWatch.objects.get(
-            Q(joined_user=request.user),
-            Q(joined_video=object))
+    if UserVidWatch.objects.filter(joined_video = object.pk, joined_user = request.user.id).exists():
+        currentUserVid = UserVidWatch.objects.get(joined_user=request.user.id, joined_video=object.pk)
         currentUserVid.specific_views = currentUserVid.specific_views + 1
         currentUserVid.save()
+        logger.error("increased user views")
     else:
-        currentUserVid = UserVidWatch.objects.create_uservidwatch(joined_video=object, joined_user=request.user, specific_views = 1)
-        # currentUserVid.save()
-    return render(request, 'video.html', {'pk':pk, 'object':object})
+        UserVidWatch.objects.create(joined_video=object.pk, joined_user=request.user.id, specific_views = 1)
+        currentUserVid = UserVidWatch.objects.get(joined_user=request.user.id, joined_video=object.pk)
+        logger.error("made a new row")
+
+    return render(request, 'video.html', {'pk':pk, 'object':object,'currentUserVid':currentUserVid})
 
 def rate_video(request, pk):
     if request.method == 'POST':
@@ -99,17 +102,3 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Exercise.objects.filter(exercise_name__icontains=query)
-
-
-
-# class VideoView(generic.ListView):
-#     model = Exercise
-#     template_name = 'videos.html'
-
-# def exercise(request, pk):
-#     try:
-#         exercise = Exercise.objects.get(id = pk)
-#     except Exercise.DoesNotExist:
-#         raise Http404('exercise not found')
-
-#     return render(request, 'exercise.html', {'exercise': exercise})

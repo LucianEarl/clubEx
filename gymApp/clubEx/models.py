@@ -26,7 +26,7 @@ class UserVidWatchManager(models.Manager):
         uservidwatch = self.create(
             joined_user=joined_user,
             joined_video=joined_video,
-            specific_views=specific_views,
+            specific_views=specific_views
         )
         uservidwatch.save(using=self._db)
         return uservidwatch
@@ -65,8 +65,8 @@ class Exercise(models.Model):
         return str(self.pk)
 
 class UserVidWatch(models.Model):
-    joined_user = models.ForeignKey(Account, on_delete=CASCADE)
-    joined_video = models.ForeignKey(Exercise, on_delete=CASCADE)
+    joined_user = models.PositiveIntegerField()
+    joined_video = models.PositiveIntegerField()
     specific_views = models.PositiveIntegerField(default=0)
     objects = UserVidWatchManager()
 
