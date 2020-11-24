@@ -1,11 +1,12 @@
-from django.db.models import query
 from account.models import Account
 from django.contrib.auth.decorators import login_required
+from django.db.models import query
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from djstripe.models import Product
+from django.shortcuts import redirect, render
 from django.views.generic import ListView
-from .forms import AccountForm, UploadForm
+from djstripe.models import Product
+
+from .forms import AccountForm, RatingForm, UploadForm
 from .functions import handle_uploaded_file
 from .models import Category, Exercise
 
@@ -67,20 +68,19 @@ def upload(request):
         return render(request,"upload.html",{'form':video})
 
 def videoDetail(request, pk):
+    form = RatingForm(request.POST)
+    if form.is_valid():
+        video=Exercise.objects.get(pk=pk)
+        star = form.cleaned_data.get('stars')
+        video.stars = int(star)*20
+        video.save()
+    else:
+        form = RatingForm()
     object = Exercise.objects.get(pk=pk)
     object.views = object.views+1
     object.save()
-
-    return render(request, 'video.html', {'pk':pk, 'object':object})
-
-def rate_video(request, pk):
-    if request.method == 'POST':
-        el_id = Exercise.objects.get(pk=pk)
-        val = request.POST.get('val')
-        obj = Exercise.objects.get(id=el_id)
-        obj.likes = val
-        obj.save()
-        
+    
+    return render(request, 'video.html', {'pk':pk, 'object':object,'form':form})
         
 class SearchResultsView(ListView):
     model = Exercise

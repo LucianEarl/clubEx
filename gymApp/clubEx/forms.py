@@ -1,3 +1,5 @@
+from django.forms import fields
+from django.forms.models import model_to_dict
 from django.forms.widgets import Select
 from account.models import Account
 from django import forms
@@ -36,3 +38,14 @@ class UploadForm(forms.ModelForm):
             self.cleaned_data['category'] = category
 
         return super(UploadForm, self).clean()
+
+CHOICES = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5')
+]
+class RatingForm(forms.Form):
+    stars = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+   

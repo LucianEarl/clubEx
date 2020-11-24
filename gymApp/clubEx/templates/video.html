@@ -1,7 +1,6 @@
 
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
 {% if user.is_authenticated %}
 {% if user.is_subscribed == True %}
@@ -13,29 +12,60 @@
       <source src="/static/{{object.videofile}}" type="video/mp4">
     </video> 
   </div>
-  <div class="d-flex justify-content-between" style="width: 500px;">
-    <div> 
-      <form class="rate-form" action="" method="POST" id="{{object.id}}">{% comment %} Star Rating form and buttons  {% endcomment %}
-        {% csrf_token %}
-        <button type="submit" class="fa fa-star rating-btn" id="first"></button>
-        <button type="submit" class="fa fa-star rating-btn" id="second"></button>
-        <button type="submit" class="fa fa-star rating-btn" id="third"></button>
-        <button type="submit" class="fa fa-star rating-btn" id="fourth"></button>
-        <button type="submit" class="fa fa-star rating-btn" id="fifth"></button>
-    </div> 
+  <div class="d-flex justify-content-between" style="width: 500px; height: 50px;">
     <div>
       <button class="btn btn-outline-dark" disabled>
         Number of views: <span class="badge badge-pill badge-danger">{{object.views}}</span>
         <span class="sr-only">unread messages</span>
       </button>
     </div> 
-    <!-- <p class="text-info">Number of views: {{object.views}}</p> -->
-  </div>
-    
-   
-    <div id="confirm-box">
-    <br>    
+    <div class="ratings-progress" style="width: 135px; margin-bottom: 100px; padding-top: 5px;">
+      <div class="progress" style="height: 28px;">
+        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" id="progress" role="progressbar" aria-valuenow="{{object.stars}}" aria-valuemin="0" aria-valuemax="100">
+        </div>   
+      </div>
+      <script>
+        let rating = document.getElementById('progress');
+        let percent = rating.getAttribute("aria-valuenow");
+        rating.setAttribute("style", "width:"+percent+"%")
+      </script>
+      <div class="stars" style="width: 135px; position: relative; bottom: 34px; font-size: 24px;">
+        <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+      </div>
     </div>
+  </div>
+  <div class="modalRating" style="height: 200px;">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
+      Rate Exercise
+    </button>
+  </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>        
+          <div class="modal-body">
+          <form method="POST" class="post-form" enctype="multipart/form-data">  
+            {% csrf_token %}  
+            {{ form }}   
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Save changes</button>
+          </div>
+          </form> 
+         </div>
+        </div>
+      </div>
+    </div>
+
+
+  
 {% endif %}
 {% endif %}
 {% endblock %}

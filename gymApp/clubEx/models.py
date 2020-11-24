@@ -1,6 +1,9 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.forms import widgets
+from django.forms.widgets import RadioSelect
+
 
 
 class CategoryManager(models.Manager):
@@ -40,13 +43,7 @@ class Exercise(models.Model):
     category = models.ForeignKey(Category, max_length=25, on_delete=CASCADE)
     videofile= models.FileField(upload_to='videos/', verbose_name="")
     views = models.PositiveIntegerField(default=0)
-    # slug = models.AutoSlugField(populate_from="exercise_name") # helps view counter for video update
-    likes = models.PositiveIntegerField(default=0,
-        validators=[
-            MaxValueValidator(5),
-            MinValueValidator(0)
-        ]
-    ) # relates to amount of likes video has been given
+    stars = models.CharField(max_length=3)
     objects = ExerciseManager()
 
     class Meta:
