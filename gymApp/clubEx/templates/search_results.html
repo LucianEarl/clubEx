@@ -3,26 +3,36 @@
 {% load static %}
 
 {% block content %}
-<h1>Search Results</h1>
-{% for exercise in object_list %}
-<div>
-    <h2>{{ exercise.exercise_name }}</h2>
-    <p>{{ exercise.category.category_name }}</p> 
-    <video width="500" controls>
-      <source src="/static/{{exercise.videofile}}" type="video/mp4">
-    </video> 
+  <h1>Search Results</h1>
+  {% if object_list %}
+  {% for exercise in object_list %}
+    <div>
+      <h2>{{ exercise.exercise_name }}</h2>
+      <p>{{ exercise.category.category_name }}</p>
+      <video width="500" controls>
+        <source src="/static/{{exercise.videofile}}" type="video/mp4">
+      </video>
     </div>
-      <div> 
-        <form class="rate-form" action="" method="POST">{% comment %} Star Rating form and buttons  {% endcomment %}
+    <div class="d-flex justify-content-between" style="width: 500px;">
+      <div>  
+        <form class="rate-form" action="" method="POST" id="{{object.id}}">{% comment %} Star Rating form and buttons  {% endcomment %}
           {% csrf_token %}
           <button type="submit" class="fa fa-star rating-btn" id="first"></button>
           <button type="submit" class="fa fa-star rating-btn" id="second"></button>
           <button type="submit" class="fa fa-star rating-btn" id="third"></button>
           <button type="submit" class="fa fa-star rating-btn" id="fourth"></button>
           <button type="submit" class="fa fa-star rating-btn" id="fifth"></button>
-      </div>
-      <br>
-      <div id="confirm-box">
-</div>
-{% endfor %}
+      </div> 
+      <div>
+        <button class="btn btn-outline-dark" disabled>
+          Number of views: <span class="badge badge-pill badge-danger">{{object.views}}</span>
+          <span class="sr-only">unread messages</span>
+        </button>
+      </div> 
+      <!-- <p class="text-info">Number of views: {{object.views}}</p> -->
+    </div>
+  {% endfor %}
+  {% else %}
+  <p>There are no results matching your search.</p>
+  {% endif %}
 {% endblock %}

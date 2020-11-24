@@ -126,7 +126,7 @@ button[type="submit"]{
 }
 
 .card:hover{
-   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247; 
+   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247;
    box-shadow: 0px 10px 13px -7px #000000, 0px 0px 10px 1px #071247;
 }
 
@@ -141,15 +141,15 @@ button[type="submit"]{
    -webkit-transition: box-shadow 150ms ease;
    transition: box-shadow 150ms ease;
 }
- 
+
 .StripeElement--focus {
    box-shadow: 0 2px 3px 0 #070b47;
 }
- 
+
 .StripeElement--invalid {
    border-color: red;
 }
- 
+
 .StripeElement--webkit-autofill {
    background-color: #fefde5 !important;
 }
@@ -197,9 +197,20 @@ button[type="submit"]{
 .groupedVideo {
   display: block;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin:0 auto;
+  
+}
+video{
+   margin: 0 auto;
+}
+.soloVideo {
+  display: block;
+  text-align: center;
+  margin:0 auto;
+  border-bottom: 2px solid darkgrey;
+}
+.sortedVids{
+  text-align: center;
 }
 .videos-left{
   height: 250px;
@@ -212,7 +223,7 @@ button[type="submit"]{
 }
 .list-group{
    list-style: none;
-   
+
 }
 .categTitle{
    padding-top: 50px;
@@ -222,5 +233,76 @@ button[type="submit"]{
    text-decoration-color: #071247;
    text-decoration: none;
    text-shadow: #070b47;
-   
+
 }
+
+
+
+
+.dropbtn {
+   background-color: #4CAF50;
+   color: white;
+   padding: 16px;
+   font-size: 16px;
+   border: none;
+   cursor: pointer;
+ }
+ 
+ .dropbtn:hover, .dropbtn:focus {
+   background-color: #3e8e41;
+ }
+ 
+ .search-bar{
+   padding-top: 1px;
+   min-width: 300px;
+ }
+
+ #myInput {
+   box-sizing: border-box;
+   font-size: 16px;
+   padding: 14px 20px 12px 45px;
+   border: none;
+   width: 100%;
+ }
+ .search-bar i{
+    position: absolute;
+    top: 18px;
+    left: 10px;
+    font-size: 20px;
+    color: rgb(19, 19, 51);
+ }
+ 
+ #myInput:focus {
+   box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+   }
+ 
+ .dropdown {
+   position: absolute;
+   display: inline-block;
+ }
+ 
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #fff;
+   min-width: 300px;
+   overflow: auto;
+   border: 2px solid  rgb(19, 19, 51);
+   box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+   z-index: 1;
+ }
+ 
+ .dropdown-content a {
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+ 
+
+ .dropdown a:hover {
+    background-color: rgb(19, 19, 51);
+    color: aliceblue;
+   }
+ 
+ .show {display: block;}

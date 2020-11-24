@@ -9,7 +9,10 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"  href="{% static 'css/stats.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/search.js' %}"></script>
     </head>
 
     <body>
@@ -28,7 +31,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -55,15 +58,22 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'signup'%}?next={{request.path}}">Sign up</a>
-                    </li>                   
+                    </li>
                     {% endif %}
-                  </ul>     
+                  </ul>
                 </div>
                 {% url 'exercises' as video_url %}
                 {% if request.get_full_path == video_url %}
-                <form class="form-inline" action="{% url 'search-results' %}" method="GET">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="dropdown form-inline" action="{% url 'search-results' %}" method="GET">
+                  <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search video exercises" id="myInput" name="q" onclick="myFunction() "onkeyup="filterFunction()" autocomplete="off">
+                  </div>
+                  <div id="myDropdown" class="dropdown-content">
+                    {% for i in category_exercise %}
+                    <a href="{% url 'video' i.id %}">{{ i.exercise_name }}</a>
+                    {% endfor %}
+                  </div>
                 </form>
                 {% endif %}
               </nav>
