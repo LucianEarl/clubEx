@@ -5,7 +5,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from djstripe.models import Product
 from django.views.generic import ListView
-from .forms import AccountForm, UploadForm
+from .forms import AccountForm, RatingForm, UploadForm
 from .functions import handle_uploaded_file
 from .models import Category, Exercise, UserVidWatch
 import logging
@@ -70,6 +70,14 @@ def upload(request):
 
 @login_required
 def videoDetail(request, pk):
+    form = RatingForm(request.POST)
+    if form.is_valid():
+        video=Exercise.objects.get(pk=pk)
+        star = form.cleaned_data.get('stars')
+        video.stars = int(star)*20
+        video.save()
+    else:
+        form = RatingForm()
     object = Exercise.objects.get(pk=pk)
     object.views = object.views+1
     object.save()
@@ -84,15 +92,8 @@ def videoDetail(request, pk):
         currentUserVid = UserVidWatch.objects.get(joined_user=request.user.id, joined_video=object.pk)
         logger.error("made a new row")
 
-    return render(request, 'video.html', {'pk':pk, 'object':object,'currentUserVid':currentUserVid})
+    return render(request, 'video.html', {'pk':pk, 'object':object,'currentUserVid':currentUserVid, 'form':form})
 
-def rate_video(request, pk):
-    if request.method == 'POST':
-        el_id = Exercise.objects.get(pk=pk)
-        val = request.POST.get('val')
-        obj = Exercise.objects.get(id=el_id)
-        obj.likes = val
-        obj.save()
 
 
 class SearchResultsView(ListView):

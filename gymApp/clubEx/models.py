@@ -46,12 +46,7 @@ class Exercise(models.Model):
     videofile= models.FileField(upload_to='videos/', verbose_name="")
     views = models.PositiveIntegerField(default=0)
     length = models.CharField(max_length=12, blank=True)
-    likes = models.PositiveIntegerField(default=0,
-        validators=[
-            MaxValueValidator(5),
-            MinValueValidator(0)
-        ]
-    ) # relates to amount of likes video has been given
+    stars = models.CharField(max_length=3)
     objects = ExerciseManager()
 
     class Meta:

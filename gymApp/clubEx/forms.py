@@ -1,7 +1,6 @@
-from django.forms.widgets import Select
+
 from account.models import Account
 from django import forms
-from django.forms.forms import BaseForm
 from .models import Category, Exercise
 
 class AccountForm(forms.Form):
@@ -36,3 +35,13 @@ class UploadForm(forms.ModelForm):
             self.cleaned_data['category'] = category
 
         return super(UploadForm, self).clean()
+
+CHOICES = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5')
+]
+class RatingForm(forms.Form):
+    stars = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
