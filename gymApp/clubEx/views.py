@@ -1,15 +1,16 @@
+from django.db.models import query
 from account.models import Account
 from django.contrib.auth.decorators import login_required
-from django.db.models import query
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.shortcuts import render
 from djstripe.models import Product
-
-from .forms import AccountForm, RatingForm, UploadForm
+from django.views.generic import ListView
+from .forms import AccountForm, UploadForm
 from .functions import handle_uploaded_file
-from .models import Category, Exercise
+from .models import Category, Exercise, UserVidWatch
+import logging
 
+logger = logging.getLogger(__name__)
 
 #home view
 def home(request):
@@ -67,21 +68,33 @@ def upload(request):
         video = UploadForm()
         return render(request,"upload.html",{'form':video})
 
+@login_required
 def videoDetail(request, pk):
-    form = RatingForm(request.POST)
-    if form.is_valid():
-        video=Exercise.objects.get(pk=pk)
-        star = form.cleaned_data.get('stars')
-        video.stars = int(star)*20
-        video.save()
-    else:
-        form = RatingForm()
     object = Exercise.objects.get(pk=pk)
     object.views = object.views+1
     object.save()
-    
-    return render(request, 'video.html', {'pk':pk, 'object':object,'form':form})
-        
+
+    if UserVidWatch.objects.filter(joined_video = object.pk, joined_user = request.user.id).exists():
+        currentUserVid = UserVidWatch.objects.get(joined_user=request.user.id, joined_video=object.pk)
+        currentUserVid.specific_views = currentUserVid.specific_views + 1
+        currentUserVid.save()
+        logger.error("increased user views")
+    else:
+        UserVidWatch.objects.create(joined_video=object.pk, joined_user=request.user.id, specific_views = 1)
+        currentUserVid = UserVidWatch.objects.get(joined_user=request.user.id, joined_video=object.pk)
+        logger.error("made a new row")
+
+    return render(request, 'video.html', {'pk':pk, 'object':object,'currentUserVid':currentUserVid})
+
+def rate_video(request, pk):
+    if request.method == 'POST':
+        el_id = Exercise.objects.get(pk=pk)
+        val = request.POST.get('val')
+        obj = Exercise.objects.get(id=el_id)
+        obj.likes = val
+        obj.save()
+
+
 class SearchResultsView(ListView):
     model = Exercise
     template_name= 'search_results.html'
@@ -89,17 +102,3 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Exercise.objects.filter(exercise_name__icontains=query)
-
-
-
-# class VideoView(generic.ListView):
-#     model = Exercise
-#     template_name = 'videos.html'
-
-# def exercise(request, pk):
-#     try:
-#         exercise = Exercise.objects.get(id = pk)
-#     except Exercise.DoesNotExist:
-#         raise Http404('exercise not found')
-
-#     return render(request, 'exercise.html', {'exercise': exercise})
