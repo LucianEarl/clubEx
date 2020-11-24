@@ -70,8 +70,8 @@
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search video exercises" id="myInput" name="q" onclick="myFunction() "onkeyup="filterFunction()" autocomplete="off">
                   </div>
-                  <div id="myDropdown" class="dropdown-content">   
-                    {% for i in category_exercise %}        
+                  <div id="myDropdown" class="dropdown-content">
+                    {% for i in category_exercise %}
                     <a href="{% url 'video' i.id %}">{{ i.exercise_name }}</a>
                     {% endfor %}
                   </div>
