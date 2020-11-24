@@ -306,3 +306,12 @@ video{
    }
  
  .show {display: block;}
+
+ #id_stars{
+    list-style: none;
+    display: inline-flex;
+ }
+ #id_stars li{
+    padding-left: 15px;
+    font-size: larger;
+ }
