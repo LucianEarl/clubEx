@@ -100,6 +100,8 @@ class Account(AbstractBaseUser):
 
 """
 ---------------------------------------------------------------------------------------------------------------------------------------------
-An object called Account(AbstractBaseUser) is being called to use an abstract method
+An object called Account(AbstractBaseUser) is being called to use an abstract method by each data type
+where a USERNAME_FIELD is only being defined by email for that user. REQUIRED_FIELDS is being defined
+and requested that the user must input for each data type listed within it's array such as username or password.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 """
