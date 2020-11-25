@@ -94,8 +94,6 @@ def videoDetail(request, pk):
 
     return render(request, 'video.html', {'pk':pk, 'object':object,'currentUserVid':currentUserVid, 'form':form})
 
-
-
 class SearchResultsView(ListView):
     model = Exercise
     template_name= 'search_results.html'
