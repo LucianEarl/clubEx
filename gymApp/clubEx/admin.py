@@ -17,3 +17,7 @@ class UserAdmin (admin.ModelAdmin):
 
 admin.site.register(Account, UserAdmin)
 admin.site.register(Category, CategoryAdmin)
+
+"""
+
+"""
