@@ -25,7 +25,7 @@ class SignUpForm(UserCreationForm):
 
 """
 ---------------------------------------------------------------------------------------------------------------------------------------------
-The SignUpForm is a class that contains a list of characteristics within a
+The SignUpForm is an object that contains a list of characteristics within a
 form such as username or email.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 """

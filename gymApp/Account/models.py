@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+"""
+---------------------------------------------------------------------------------------------------------------------------------------------
+django.db is the database that's been imported elsewhere.
+---------------------------------------------------------------------------------------------------------------------------------------------
+"""
+
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, physical_address, phone_number, password=None):
         if not email:
@@ -45,6 +51,19 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+"""
+---------------------------------------------------------------------------------------------------------------------------------------------
+create_user is an object that is being defined to call a function for each arguement
+by displaying an error if the input is incorrect.
+
+user = self.model is being used as an instance of a class by using the self keyword by accessing
+attributes and methods within it's own model. The model has it's own parameters and if true
+for each user, a return statement is used to end the execution of a function.
+
+also applies to the create_superuser.
+---------------------------------------------------------------------------------------------------------------------------------------------
+"""
+
 
 class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -78,3 +97,9 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+"""
+---------------------------------------------------------------------------------------------------------------------------------------------
+An object called Account(AbstractBaseUser) is being called to use an abstract method
+---------------------------------------------------------------------------------------------------------------------------------------------
+"""
