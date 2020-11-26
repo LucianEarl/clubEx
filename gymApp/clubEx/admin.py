@@ -19,5 +19,9 @@ admin.site.register(Account, UserAdmin)
 admin.site.register(Category, CategoryAdmin)
 
 """
+CategoryAdmin is an object that's defining an instance of a class by accessing
+attributes and methods on request.
+
+UserAdmin is an object
 
 """

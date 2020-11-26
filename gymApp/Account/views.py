@@ -34,5 +34,8 @@ signup_view is an object that is being defined to call a request function
 to respond to an object with all it's data, especially content.
 the user_detail is an object that is also calling a request function to
 respond.
+
+user_detail is an object that is being defined to call a request function
+to respond to all other objects in Account.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 """
